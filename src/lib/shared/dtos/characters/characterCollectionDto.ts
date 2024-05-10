@@ -1,5 +1,5 @@
-import { BasePaginationDto } from '../basePaginationDto';
 import type { BaseCollectionResponse, CharacterResponse } from '$lib/server/httpConsumers';
+import { BasePaginationDto } from '../basePaginationDto';
 
 export class CharacterCollectionDto extends BasePaginationDto {
 	characters: CharacterResponse[];
@@ -15,7 +15,7 @@ export class CharacterCollectionDto extends BasePaginationDto {
 			this.limit = paginationLimit ?? this.limit;
 			this.total = characterCollectionResponse.info?.count ?? this.total;
 		} else {
-			this.characters = [];
+			this.characters = [] as CharacterResponse[];
 		}
 	}
 }

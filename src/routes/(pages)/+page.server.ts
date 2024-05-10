@@ -1,8 +1,6 @@
 import { DummyJsonQueries } from '$lib/shared/queries/dummyJsonQueries';
 import { error } from '@sveltejs/kit';
-import { ProductCharacterViewDto } from '$lib/shared/dtos/views/ProductCharactorViewDto';
-import { BasePageDataDto, SeoDataDto } from '$lib/shared/dtos';
-import { Endpoints } from '../(api)/api/v1/endpoints';
+
 import type { PageServerLoad } from './$types';
 import type {
 	BaseCollectionResponse,
@@ -10,14 +8,14 @@ import type {
 	CharacterResponse,
 	ProductCollectionResponse
 } from '$lib/server/httpConsumers';
+import { ProductCharacterViewDto } from '$lib/shared/dtos/views/ProductCharactorViewDto';
+import { BasePageDataDto, SeoDataDto } from '$lib/shared/dtos';
 
 export const load: PageServerLoad = async ({ fetch, url }) => {
 	const dummyJsonProductsPromise: Promise<ProductCollectionResponse> =
 		PageHelper.getDummyJsonProducts(fetch, url.searchParams);
-
 	const rickAndMortyCharactersPromise: Promise<BaseCollectionResponse<CharacterResponse>> =
 		PageHelper.getCharacters(fetch);
-
 	const [dummyJsonProducts, rickAndMortyCharacters] = await Promise.all([
 		dummyJsonProductsPromise,
 		rickAndMortyCharactersPromise
@@ -45,11 +43,11 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 abstract class PageHelper {
 	static async getDummyJsonProducts(fetch: any, search?: URLSearchParams) {
 		const query = DummyJsonQueries.getProductCardsQuery(search);
-		const response = await fetch(Endpoints.dummyJson.getProductList + query);
+		const response = await fetch('/api/v1/dummy-json/products' + query);
 		const parsedResponse: BaseResponse<ProductCollectionResponse> = await response.json();
 
 		if (!parsedResponse.isSuccessful) {
-			error(parsedResponse.statusCode as any, parsedResponse.message ?? 'An error has occurred');
+			error(parsedResponse.statusCode, parsedResponse.message);
 		}
 
 		return parsedResponse.result!;
@@ -57,12 +55,12 @@ abstract class PageHelper {
 
 	static async getCharacters(fetch: any, search?: URLSearchParams) {
 		const query = DummyJsonQueries.getProductCardsQuery(search);
-		const response = await fetch(Endpoints.rickAndMorty.getCharacterList + query);
+		const response = await fetch('/api/v1/rickandmorty/character' + query);
 		const parsedResponse: BaseResponse<BaseCollectionResponse<CharacterResponse>> =
 			await response.json();
 
 		if (!parsedResponse.isSuccessful) {
-			error(parsedResponse.statusCode as any, parsedResponse.message ?? 'An error has occurred');
+			error(parsedResponse.statusCode, parsedResponse.message);
 		}
 
 		return parsedResponse.result!;

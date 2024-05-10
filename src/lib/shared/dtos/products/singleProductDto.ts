@@ -4,6 +4,6 @@ export class SingleProductDto {
 	product: ProductResponse;
 
 	constructor(productResponse: ProductResponse | undefined) {
-		this.product = productResponse ?? {};
+		this.product = productResponse ?? ({} as ProductResponse);
 	}
 }

@@ -1,5 +1,5 @@
-import { BasePaginationDto } from '../basePaginationDto';
 import type { BaseCollectionResponse, LocationResponse } from '$lib/server/httpConsumers';
+import { BasePaginationDto } from '../basePaginationDto';
 
 export class LocationCollectionDto extends BasePaginationDto {
 	locations: LocationResponse[];
@@ -15,7 +15,7 @@ export class LocationCollectionDto extends BasePaginationDto {
 			this.limit = paginationLimit ?? this.limit;
 			this.total = locationCollectionResponse.info?.count ?? this.total;
 		} else {
-			this.locations = [];
+			this.locations = [] as LocationResponse[];
 		}
 	}
 }
