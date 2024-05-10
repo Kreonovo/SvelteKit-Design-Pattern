@@ -37,8 +37,5 @@
 		"typescript": "^5.2.2",
 		"vite": "^5.0.10"
 	},
-	"type": "module",
-	"dependencies": {
-		"sqlite3": "^5.1.6"
-	}
+	"type": "module"
 }

@@ -4,6 +4,6 @@ export class SingleLocationDto {
 	location: LocationResponse;
 
 	constructor(locationResponse: LocationResponse | undefined) {
-		this.location = locationResponse ?? {};
+		this.location = locationResponse ?? ({} as LocationResponse);
 	}
 }

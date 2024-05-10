@@ -3,7 +3,7 @@
 	import Twitter from './Twitter.svelte';
 	import type { SeoHead } from './seoHead.type';
 
-	const { siteTitle, author } = website;
+	const { siteLanguage, siteTitle, author } = website;
 	export let componentData: SeoHead;
 
 	const pageTitle = `${componentData?.metaTitle} | ${siteTitle}`;

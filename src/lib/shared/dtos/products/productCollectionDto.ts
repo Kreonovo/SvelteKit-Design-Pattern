@@ -1,5 +1,5 @@
-import { BasePaginationDto } from '../basePaginationDto';
 import type { ProductCollectionResponse, ProductResponse } from '$lib/server/httpConsumers';
+import { BasePaginationDto } from '../basePaginationDto';
 
 export class ProductCollectionDto extends BasePaginationDto {
 	products?: ProductResponse[];
@@ -13,7 +13,7 @@ export class ProductCollectionDto extends BasePaginationDto {
 			this.skip = productCollectionResponse.skip ?? this.skip;
 			this.total = productCollectionResponse.total ?? this.total;
 		} else {
-			this.products = [];
+			this.products = [] as ProductResponse[];
 		}
 	}
 }

@@ -20,21 +20,21 @@ export abstract class DummyJsonQueries {
 		}
 
 		const { skip, limit, q } = params;
-		let query = '?';
+		let urlSearchParams = new URLSearchParams();
 		let selectQuery = 'title,price,category,thumbnail';
 
 		if (skip !== undefined) {
-			query += `skip=${skip}&`;
+			urlSearchParams.append('skip', skip.toString());
 		}
 		if (limit !== undefined) {
-			query += `limit=${limit}&`;
+			urlSearchParams.append('limit', limit.toString());
 		}
 		if (q !== undefined) {
-			query += `q=${q}&`;
+			urlSearchParams.append('q', q);
 		}
 
-		query += `select=${selectQuery}&`;
-		query = query.endsWith('&') ? query.slice(0, -1) : query;
+		urlSearchParams.append('select', selectQuery);
+		let query = '?' + urlSearchParams.toString();
 
 		return query;
 	}

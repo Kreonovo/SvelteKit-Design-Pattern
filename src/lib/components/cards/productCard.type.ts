@@ -1,5 +1,5 @@
 export abstract class ProductCard {
-	id?: number;
+	id!: number;
 	title?: string;
 	price?: number;
 	category?: string;

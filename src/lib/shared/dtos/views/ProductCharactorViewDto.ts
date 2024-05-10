@@ -1,10 +1,10 @@
-import { CharacterCollectionDto } from '../characters';
-import { ProductCollectionDto } from '../products';
 import type {
 	BaseCollectionResponse,
 	CharacterResponse,
 	ProductCollectionResponse
 } from '$lib/server/httpConsumers';
+import { CharacterCollectionDto } from '../characters';
+import { ProductCollectionDto } from '../products';
 
 export class ProductCharacterViewDto {
 	productCollection: ProductCollectionDto;

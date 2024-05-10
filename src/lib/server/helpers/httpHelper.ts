@@ -20,7 +20,7 @@ export abstract class HttpHelper {
 		request: any,
 		response: Response
 	): Promise<BaseResponse<T>> {
-		if (response.status == HTTPStatusCodes.Unauthorized401) {
+		if (response.status == HTTPStatusCodes.Unauthorised401) {
 			return this.getUnauthorisedResponse<T>();
 		}
 
@@ -47,7 +47,7 @@ export abstract class HttpHelper {
 			isSuccessful: false,
 			message: 'Unauthorised',
 			result: undefined,
-			statusCode: HTTPStatusCodes.Unauthorized401
+			statusCode: HTTPStatusCodes.Unauthorised401
 		} as BaseResponse<T>;
 	}
 
