@@ -1,4 +1,4 @@
-# README.md for Kreonovo.com SvelteKit MVC Design Pattern Template
+# SvelteKit MVC Design Pattern Template
 
 ## Introduction
 
